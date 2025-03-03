@@ -5,10 +5,13 @@ import '../../global_variables.dart';
 
 DataColumn dataColumnTitle(String title) {
   return DataColumn(
-    label: Expanded(
-      child: Text(title,
-          style: TextStyle(
-              fontStyle: FontStyle.italic, fontWeight: FontWeight.bold)),
+    columnWidth: FixedColumnWidth(230),
+    label: Container(
+      child: Text(
+        title,
+        style:
+            TextStyle(fontStyle: FontStyle.italic, fontWeight: FontWeight.bold),
+      ),
     ),
   );
 }

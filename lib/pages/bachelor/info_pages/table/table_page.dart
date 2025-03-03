@@ -4,31 +4,8 @@ import '../../get_json_info.dart';
 import '../../global_variables.dart';
 import 'data_column_page.dart';
 
-import 'simple_table_page.dart';
-
 class TablePage extends StatefulWidget {
   const TablePage({super.key});
-
-  final columns = 10;
-  final rows = 30;
-
-  List<List<String>> makeData() {
-    final List<List<String>> output = [];
-    for (int i = 0; i < columns; i++) {
-      final List<String> row = [];
-      for (int j = 0; j < rows; j++) {
-        row.add('L$j : T$i');
-      }
-      output.add(row);
-    }
-    return output;
-  }
-
-  /// Simple generator for column title
-  // List<String> makeTitleColumn() => List.generate(columns, (i) => 'Top $i');
-
-  /// Simple generator for row title
-  List<String> makeTitleRow() => List.generate(rows, (i) => 'Left $i');
 
   @override
   _TablePageState createState() => _TablePageState();
@@ -37,17 +14,16 @@ class TablePage extends StatefulWidget {
 class _TablePageState extends State<TablePage> {
   late Future<List<Coefficients>> futureCoefficients;
 
-  List<String> listColumnTitles = [];
-  List<String> listRowTitles = [];
-  List<DataRow> listDataRow = [];
+  List<DataColumn> listDataColumn = [];
 
+  List<DataRow> listDataRow = [];
   @override
   void initState() {
     super.initState();
     futureCoefficients = fetchCoefficients();
     tableDataColumnTitle.forEach(
       (key, val) {
-        if (key != 'name') listColumnTitles.add(val);
+        listDataColumn.add(dataColumnTitle(val));
       },
     );
     futureCoefficients.then(
@@ -55,7 +31,6 @@ class _TablePageState extends State<TablePage> {
         value.forEach(
           (element) {
             listDataRow.add(dataRowVal(element));
-            listRowTitles.add(element.getCofByName('name'));
           },
         );
         setState(() {});
@@ -65,39 +40,46 @@ class _TablePageState extends State<TablePage> {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBar(
+      backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      title: const Text('Таблиця вагових коефіцієнтів',
+          textDirection: TextDirection.ltr, softWrap: true),
+    );
+
+    double statusBarHeight = MediaQuery.of(context).padding.top;
+    double appBarHeight = appBar.preferredSize.height;
+    double bodyHeight =
+        MediaQuery.of(context).size.height - statusBarHeight - appBarHeight;
+
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Таблиця вагових коефіцієнтів',
-            textDirection: TextDirection.ltr, softWrap: true),
-      ),
+      appBar: appBar,
       body: Container(
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 30, left: 10, right: 10),
-          child: SimpleTablePage(
-            titleColumn: listColumnTitles,
-            titleRow: listRowTitles,
-            data: widget.makeData(),
+        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Column(
+            children: [
+              DataTable(columns: listDataColumn, rows: []),
+              // Container(
+              // child:
+              Container(
+                height: bodyHeight - 100,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: DataTable(
+                    headingRowHeight: 0.0,
+                    dataRowMaxHeight: double.infinity, // Code to be changed.
+                    dataRowMinHeight: 50,
+                    columns: listDataColumn,
+                    rows: listDataRow,
+                  ),
+                ),
+              ),
+              // ),
+            ],
           ),
         ),
       ),
-      // bottomNavigationBar: BottomNavigationBar(
-      //   type: BottomNavigationBarType.fixed,
-      //   items: <BottomNavigationBarItem>[
-      //     BottomNavigationBarItem(
-      //       icon: Container(),
-      //       label: 'Base',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Container(),
-      //       label: 'Tap',
-      //     ),
-      //   ],
-      //   currentIndex: 0,
-      //   selectedItemColor: Colors.amber[800],
-      // ),
-      // bottomSheet: Padding(
-      //     padding: const EdgeInsets.only(bottom: 30, left: 10, right: 10)),
     );
   }
 }

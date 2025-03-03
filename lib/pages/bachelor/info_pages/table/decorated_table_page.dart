@@ -25,13 +25,13 @@ class _DecoratedTablePageState extends State<DecoratedTablePage> {
     final textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Sticky Headers Two-Dimension  Table decorated',
-          maxLines: 2,
-        ),
-        backgroundColor: Colors.amber,
-      ),
+      // appBar: AppBar(
+      //   title: Text(
+      //     'Sticky Headers Two-Dimension  Table decorated',
+      //     maxLines: 2,
+      //   ),
+      //   backgroundColor: Colors.amber,
+      // ),
       body: Column(
         children: [
           Expanded(
@@ -58,32 +58,32 @@ class _DecoratedTablePageState extends State<DecoratedTablePage> {
               showHorizontalScrollbar: isHorizontalScrollbar,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Row(
-              children: [
-                Checkbox(
-                  value: isHorizontalScrollbar,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      isHorizontalScrollbar = !isHorizontalScrollbar;
-                    });
-                  },
-                ),
-                Text('Horizontal scrollbar'),
-                const SizedBox(width: 16),
-                Checkbox(
-                  value: isVerticalScrollbar,
-                  onChanged: (bool? value) {
-                    setState(() {
-                      isVerticalScrollbar = !isVerticalScrollbar;
-                    });
-                  },
-                ),
-                Text('Vertical scrollbar'),
-              ],
-            ),
-          )
+          // Padding(
+          //   padding: const EdgeInsets.all(8),
+          //   child: Row(
+          //     children: [
+          //       Checkbox(
+          //         value: isHorizontalScrollbar,
+          //         onChanged: (bool? value) {
+          //           setState(() {
+          //             isHorizontalScrollbar = !isHorizontalScrollbar;
+          //           });
+          //         },
+          //       ),
+          //       Text('Horizontal scrollbar'),
+          //       const SizedBox(width: 16),
+          //       Checkbox(
+          //         value: isVerticalScrollbar,
+          //         onChanged: (bool? value) {
+          //           setState(() {
+          //             isVerticalScrollbar = !isVerticalScrollbar;
+          //           });
+          //         },
+          //       ),
+          //       Text('Vertical scrollbar'),
+          //     ],
+          //   ),
+          // )
         ],
       ),
     );

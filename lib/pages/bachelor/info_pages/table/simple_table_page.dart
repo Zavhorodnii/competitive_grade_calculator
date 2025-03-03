@@ -38,7 +38,7 @@ class SimpleTablePage extends StatelessWidget {
         ),
         cellDimensions: CellDimensions.fixed(
           contentCellWidth: 110,
-          contentCellHeight: 50,
+          contentCellHeight: 60,
           stickyLegendWidth: 200,
           stickyLegendHeight: 60,
         ),

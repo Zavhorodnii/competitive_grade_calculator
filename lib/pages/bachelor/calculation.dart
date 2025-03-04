@@ -1,4 +1,4 @@
-import 'get_json_info.dart';
+import 'b_get_json_info.dart';
 
 class Results {
   final Coefficients futureCoefficients;
@@ -23,8 +23,6 @@ class Results {
         futureCoefficients.math! +
         futureCoefficients.history! +
         futureCoefficients.getCofByName(k4);
-    // print('dividend = $dividend');
-    // print('divisor = $divisor');
     if (futureCoefficients.con != null && selectedTk != false) {
       dividend = dividend + futureCoefficients.con! * tk;
       divisor = divisor + futureCoefficients.con!;
@@ -34,7 +32,6 @@ class Results {
       competitiveScore = double.parse(
           (competitiveScore * futureCoefficients.coef!).toStringAsFixed(2));
     }
-    // print('competitiveScore = $competitiveScore');
     return this;
   }
 }

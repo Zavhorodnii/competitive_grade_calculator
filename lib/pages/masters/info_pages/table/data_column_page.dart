@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../b_get_json_info.dart';
 import '../../global_variables.dart';
+import '../../m_get_json_info.dart';
 
 DataColumn dataColumnTitle(String title) {
   return DataColumn(

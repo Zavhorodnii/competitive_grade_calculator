@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../pages/bachelor/calculation.dart';
 import '../pages/bachelor/global_variables.dart';
-import 'results_row.dart';
+import 'b_results_row.dart';
 
 class ExpansionTileData extends StatefulWidget {
   const ExpansionTileData(

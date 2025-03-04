@@ -1,26 +1,20 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
 
-import '../../widgets/b_expansion_tile_data.dart';
+import '../../../widgets/m_expansion_tile_data.dart';
+import '../m_get_json_info.dart';
 import 'calculation.dart';
-import 'b_get_json_info.dart';
 
-// late final Map selectedData;
-// const Map? selectedData;
-
-class BachelorResult extends StatefulWidget {
-  const BachelorResult({super.key, required this.selectedData});
+class MasterResult extends StatefulWidget {
+  const MasterResult({super.key, required this.selectedData});
   final Map selectedData;
-  // super.selectedData = selectedData;
 
   @override
-  _BachelorResultState createState() => _BachelorResultState();
+  _MasterResultState createState() => _MasterResultState();
 }
 
-class _BachelorResultState extends State<BachelorResult> {
+class _MasterResultState extends State<MasterResult> {
   List<ExpansionTileData> listwidgets = [];
   late Future<List<Coefficients>> futureCoefficients;
-  // late var futureCoefficients;
 
   @override
   void initState() {
@@ -32,13 +26,9 @@ class _BachelorResultState extends State<BachelorResult> {
         value.forEach(
           (element) {
             results.add(Results(futureCoefficients: element).calculate(
-              k4: widget.selectedData['selected_sub'],
-              p1: double.parse(widget.selectedData['ukr']),
-              p2: double.parse(widget.selectedData['math']),
-              p3: double.parse(widget.selectedData['history']),
-              p4: double.parse(widget.selectedData['selected_sub_grade']),
-              selectedTk: widget.selectedData['is_creative_competition'],
-              tk: double.parse(widget.selectedData['creative_competition']),
+              p1: double.parse(widget.selectedData['eng']),
+              p2: double.parse(widget.selectedData['logic']),
+              p3: double.parse(widget.selectedData['spec']),
             ));
           },
         );
@@ -59,7 +49,7 @@ class _BachelorResultState extends State<BachelorResult> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Бакалавр'),
+        title: const Text('Магістр'),
       ),
       body: Container(
         // padding: const EdgeInsets.only(left: 20, right: 20),
@@ -70,7 +60,6 @@ class _BachelorResultState extends State<BachelorResult> {
           ),
         ),
       ),
-      // ignore: avoid_print
     );
   }
 }

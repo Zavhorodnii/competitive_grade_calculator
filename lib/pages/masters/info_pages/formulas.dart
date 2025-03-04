@@ -34,7 +34,7 @@ class Formulas extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(right: 10),
                       child: Text(
-                        'Конкурсний бал = 0,2*П1 + 0,2*П2 + К3*П3',
+                        'Конкурсний бал = K1*П1 + K2*П2 + К3*П3',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -108,6 +108,31 @@ class Formulas extends StatelessWidget {
                         children: [
                           Text(
                             'Оцінка тесту ЄФВВ (ЄДКІ) або оцніка фагового іспиту',
+                            textAlign: TextAlign.left,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(bottom: 20),
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: Text(
+                        'К1, К2, К3',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Вагові коефіцієнти предметів (коефіцієнти залежать від спеціальності, на яку подається заява)',
                             textAlign: TextAlign.left,
                           ),
                         ],
